@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script>
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+      // 生成器函数
+      function* foo(value1) { // 一般第一个参数通过函数参数的形式传参
+        console.log('一', value1)
+        console.log('二', value1)
+        // 因为在执行第二个next方法时候，是从这个yield关键字开始执行，所以在这接收到传递的参数
+        const value2 = yield // 接收到第二次调用next方法传递的参数
+        console.log('三', value2)
+        console.log('四', value2)
+        const value3 = yield // 接收到第三次调用next方法传递的参数
+        console.log('五', value3)
+        console.log('六', value3)
+      }
+
+      const generator = foo('我是value1') // 一般第一个参数通过函数参数的形式传参
+      generator.next()
+      generator.next('我是value2') // 调用第二次next方法时候传递参数
+      generator.next('我是value3') // 调用第三次next方法时候传递参数
+
+    </script>
+  </body>
 </html>
